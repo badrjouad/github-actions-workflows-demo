@@ -6,6 +6,23 @@ on:
   workflow_dispatch:
 
 jobs:
+  validate-pr:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+    - name: Validate PR Title Format
+      run: |
+        PR_TITLE="${{ github.event.pull_request.title }}"
+        echo "PR Title: $PR_TITLE"
+        
+        # Valid prefixes: feat:, fix:, docs:, style:, refactor:, test:, chore:
+        if [[ $PR_TITLE =~ ^(feat|fix|docs|style|refactor|test|chore|perf|ci): ]]; then
+          echo "✅ PR title format is valid!"
+        else
+          echo "❌ PR title must start with one of: feat:, fix:, docs:, style:, refactor:, test:, chore:, perf:, ci:"
+          exit 1
+        fi
+
   deploy:
     runs-on: ubuntu-latest
     steps:
