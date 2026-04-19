@@ -19,7 +19,7 @@ Fixes #(issue number)
 - [ ] My changes generate no new warnings
 - [ ] I have added tests that prove my fix/feature works
 
-## 📸 Screenshots (if applicable)
+## 📸 Additional notes (if applicable)
 <!-- Add screenshots here -->
 
 ## 🎯 Notes
